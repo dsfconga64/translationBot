@@ -43,9 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LanguagueManagement.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserManagment.cs" />
+    <Compile Include="TranslationHistoryManagement.cs" />
+    <Compile Include="TranslationManagement.cs" />
+    <Compile Include="UserManagement.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

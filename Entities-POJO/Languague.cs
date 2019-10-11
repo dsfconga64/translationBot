@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entities_POJO
 {
-    public class Class1
+    class Languague
     {
     }
 }

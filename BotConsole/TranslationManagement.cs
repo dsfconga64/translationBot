@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BotConsole
 {
-    class UserManagment
+    class TranslationManagement
     {
     }
 }
