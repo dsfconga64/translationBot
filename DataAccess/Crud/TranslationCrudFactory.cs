@@ -11,16 +11,16 @@ namespace DataAccess.Crud
 {
     public class TranslationCrudFactory: CrudFactory
     {
-        TranslationHistoryMapper mapper;
+        TranslationMapper mapper;
 
         public TranslationCrudFactory() : base()
         {
-            mapper = new TranslationHistoryMapper();
+            mapper = new TranslationMapper();
             dao = SqlDao.GetInstance();
         }
         public override void Create(BaseEntity entity)
         {
-            var account = (TranslationsHistory)entity;
+            var account = (Translations)entity;
             var sqlOperation = mapper.GetCreateStatement(account);
             dao.ExecuteProcedure(sqlOperation);
         }
@@ -61,13 +61,13 @@ namespace DataAccess.Crud
 
         public override void Update(BaseEntity entity)
         {
-            var account = (TranslationsHistory)entity;
+            var account = (Translations)entity;
             dao.ExecuteProcedure(mapper.GetUpdateStatement(account));
         }
 
         public override void Delete(BaseEntity entity)
         {
-            var account = (TranslationsHistory)entity;
+            var account = (Translations)entity;
             dao.ExecuteProcedure(mapper.GetDeleteStatement(account));
         }
     }

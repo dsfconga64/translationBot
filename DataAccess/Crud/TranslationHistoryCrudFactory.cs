@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Crud
 {
-    class TranslationHistoryCrudFactory
+    public class TranslationHistoryCrudFactory: CrudFactory
     {
+        TR
     }
 }
