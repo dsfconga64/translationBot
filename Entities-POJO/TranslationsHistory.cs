@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entities_POJO
 {
-    class TranslationsHistory
+    public class TranslationsHistory:BaseEntity
     {
         public int translationHistoryId { get; set; }
         public string word { get; set; }
