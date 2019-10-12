@@ -11,5 +11,16 @@ namespace Entities_POJO
         public int IdUser { get; set; }
         public string Name { get; set; }
         public int amountTranslatedWords { get; set; }
+
+        public User()
+        {
+        }
+        public User(string pname)
+        {
+            Name = pname;
+            //amountTranslatedWords = 0;
+        }
+
+
     }
 }

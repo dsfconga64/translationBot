@@ -23,7 +23,9 @@ namespace BotConsole
             try
             {
                 var mng = new UserManagement();
-                var customer = new User();
+                var mngLng = new LanguagueManagement();
+                var user = new User();
+                var languague = new Languague();
 
                 Console.WriteLine("TranslationBot");
                 Console.WriteLine("1.Añadir usuario");
@@ -39,97 +41,105 @@ namespace BotConsole
                 {
                     case "1":
                         Console.WriteLine("***************************");
-                        Console.WriteLine("*****     CREATE    *******");
+                        Console.WriteLine("*****     Añadir Usuario    *******");
                         Console.WriteLine("***************************");
-                        Console.WriteLine("Type the id, name, last_name and age separated by comma");
+                        Console.WriteLine("Escribe el nombre de usuario");
                         var info = Console.ReadLine();
-                        var infoArray = info.Split(',');
+                        //var infoArray = info.Split(',');
 
-                        customer = new Customer(infoArray);
-                        mng.Create(customer);
+                        user = new User(info);
+                        mng.Create(user);
 
-                        Console.WriteLine("Customer was created");
+                        Console.WriteLine("Usuario  añadido");
 
                         break;
 
                     case "2":
                         Console.WriteLine("***************************");
-                        Console.WriteLine("*****  RETRIEVE ALL   *****");
+                        Console.WriteLine("***** Añadir idioma   *****");
                         Console.WriteLine("***************************");
+                        Console.WriteLine("Escribe el idioma que desea añadir");
+                        var infoLang = Console.ReadLine();
 
-                        var lstCustomers = mng.RetrieveAll();
-                        var count = 0;
+                        languague = new Languague(infoLang);
 
-                        foreach (var c in lstCustomers)
-                        {
-                            count++;
-                            Console.WriteLine(count + " ==> " + c.GetEntityInformation());
-                        }
+                        mngLng.Create(languague);
+
+                        Console.WriteLine("Idioma añadido");
+
+                        //var lstCustomers = mng.RetrieveAll();
+                        //var count = 0;
+
+                        //foreach (var c in lstCustomers)
+                        //{
+                        //    count++;
+                        //    Console.WriteLine(count + " ==> " + c.GetEntityInformation());
+                        //}
 
                         break;
                     case "3":
-                        Console.WriteLine("Type the customer id:");
-                        customer.Id = Console.ReadLine();
-                        customer = mng.RetrieveById(customer);
+                        //Console.WriteLine("Type the customer id:");
+                        //customer.Id = Console.ReadLine();
+                        //customer = mng.RetrieveById(customer);
 
-                        if (customer != null)
-                        {
-                            Console.WriteLine(" ==> " + customer.GetEntityInformation());
-                        }
+                        //if (customer != null)
+                        //{
+                        //    Console.WriteLine(" ==> " + customer.GetEntityInformation());
+                        //}
 
                         break;
                     case "4":
                         Console.WriteLine("***************************");
-                        Console.WriteLine("******  UPDATE  **    *****");
-                        Console.WriteLine("***************************");
+                        //Console.WriteLine("******  UPDATE  **    *****");
+                        //Console.WriteLine("***************************");
 
-                        Console.WriteLine("Type the customer id:");
-                        customer.Id = Console.ReadLine();
-                        customer = mng.RetrieveById(customer);
+                        //Console.WriteLine("Type the customer id:");
+                        //customer.Id = Console.ReadLine();
+                        //customer = mng.RetrieveById(customer);
 
-                        if (customer != null)
-                        {
-                            Console.WriteLine(" ==> " + customer.GetEntityInformation());
-                            Console.WriteLine("Type a new name, actual value is " + customer.Name);
-                            customer.Name = Console.ReadLine();
-                            Console.WriteLine("Type a new last name, actual value is " + customer.LastName);
-                            customer.LastName = Console.ReadLine();
-                            Console.WriteLine("Type a new age, actual value is " + customer.Age);
-                            var textAge = Console.ReadLine();
-                            customer.Age = Int32.TryParse(textAge, out int age) ? age : customer.Age;
+                        //if (customer != null)
+                        //{
+                        //    Console.WriteLine(" ==> " + customer.GetEntityInformation());
+                        //    Console.WriteLine("Type a new name, actual value is " + customer.Name);
+                        //    customer.Name = Console.ReadLine();
+                        //    Console.WriteLine("Type a new last name, actual value is " + customer.LastName);
+                        //    customer.LastName = Console.ReadLine();
+                        //    Console.WriteLine("Type a new age, actual value is " + customer.Age);
+                        //    var textAge = Console.ReadLine();
+                        //    customer.Age = Int32.TryParse(textAge, out int age) ? age : customer.Age;
 
-                            mng.Update(customer);
-                            Console.WriteLine("Customer was updated");
-                        }
-                        else
-                        {
-                            throw new Exception("Customer not registered");
-                        }
+                        //    mng.Update(customer);
+                        //    Console.WriteLine("Customer was updated");
+                        //}
+                        //else
+                        //{
+                        //    throw new Exception("Customer not registered");
+                        //}
 
                         break;
 
                     case "5":
-                        Console.WriteLine("Type the customer id:");
-                        customer.Id = Console.ReadLine();
-                        customer = mng.RetrieveById(customer);
+                        //Console.WriteLine("Type the customer id:");
+                        //customer.Id = Console.ReadLine();
+                        //customer = mng.RetrieveById(customer);
 
-                        if (customer != null)
-                        {
-                            Console.WriteLine(" ==> " + customer.GetEntityInformation());
+                        //if (customer != null)
+                        //{
+                        //    Console.WriteLine(" ==> " + customer.GetEntityInformation());
 
-                            Console.WriteLine("Delete? Y/N");
-                            var delete = Console.ReadLine();
+                        //    Console.WriteLine("Delete? Y/N");
+                        //    var delete = Console.ReadLine();
 
-                            if (delete.Equals("Y", StringComparison.CurrentCultureIgnoreCase))
-                            {
-                                mng.Delete(customer);
-                                Console.WriteLine("Customer was deleted");
-                            }
-                        }
-                        else
-                        {
-                            throw new Exception("Customer not registered");
-                        }
+                        //    if (delete.Equals("Y", StringComparison.CurrentCultureIgnoreCase))
+                        //    {
+                        //        mng.Delete(customer);
+                        //        Console.WriteLine("Customer was deleted");
+                        //    }
+                        //}
+                        //else
+                        //{
+                        //    throw new Exception("Customer not registered");
+                        //}
 
                         break;
 

@@ -11,6 +11,10 @@ namespace Entities_POJO
         public int IdLanguague { get; set; }
         public string languague { get; set; }
 
-               
+        public Languague() { }
+        public Languague(string planguague)
+        {
+            languague = planguague;
+        }
     }
 }
