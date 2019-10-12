@@ -54,7 +54,7 @@ namespace DataAccess.Mapper
 
             var c = (TranslationsHistory)entity;
             operation.AddVarcharParam(DB_COL_WORD, c.word);
-            operation.AddDatetimeParam(DB_COL_WORD, c.translatedDate);
+            operation.AddDatetimeParam(DB_COL_TRANSLATED_DATE, c.translatedDate);
             operation.AddVarcharParam(DB_COL_TRANSLATED_WORD, c.translatedWord);
 
             return operation;
@@ -84,7 +84,7 @@ namespace DataAccess.Mapper
 
         public BaseEntity BuildObject(Dictionary<string, object> row)
         {
-            var customer = new TranslationsHistory
+            var translationsHistory = new TranslationsHistory
             {
                 translationHistoryId = GetIntValue(row, DB_COL_ID_TRANSLATION_HISTORY),
                 word = GetStringValue(row, DB_COL_WORD),
@@ -94,7 +94,7 @@ namespace DataAccess.Mapper
                 FkLanguagueId = GetIntValue(row,DB_COL_FK_LANGUAUGE_ID)
             };
 
-            return customer;
+            return translationsHistory;
         }
     }
 }
