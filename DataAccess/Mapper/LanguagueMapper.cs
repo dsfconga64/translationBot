@@ -30,7 +30,7 @@ namespace DataAccess.Mapper
             var operation = new SqlOperation { ProcedureName = "RET_LANGUAGUE_PR" };
 
             var c = (Languague)entity;
-            operation.AddIntParam(DB_COL_ID_LANGUAGUE, c.IdLanguague);
+            operation.AddVarcharParam(DB_COL_LANGUAGUE, c.languague);
 
             return operation;
         }
