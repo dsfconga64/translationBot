@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Entities_POJO
 {
-    class Languague
+    public class Languague:BaseEntity
     {
+        public int IdLanguague { get; set; }
+        public string languague { get; set; }
+
+               
     }
 }

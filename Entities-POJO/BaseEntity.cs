@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Entities_POJO
 {
-    class BaseEntity
+    public class BaseEntity
     {
+        public String GetEntityInformation()
+        {
+            var dump = ObjectDumper.Dump(this);
+            return dump;
+        }
     }
 }
