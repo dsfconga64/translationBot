@@ -38,7 +38,7 @@ namespace DataAccess.Mapper
 
             var c = (Translations)entity;
             operation.AddIntParam(DB_COL_FK_LANGUAUGE_ID, c.FkLanguagueId);
-            operation.AddVarcharParam(DB_COL_TRANSLATED_WORD, c.word);
+            operation.AddVarcharParam(DB_COL_WORD, c.word);
 
             return operation;
         }

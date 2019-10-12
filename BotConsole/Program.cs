@@ -24,6 +24,7 @@ namespace BotConsole
             {
                 var mng = new UserManagement();
                 var mngLng = new LanguagueManagement();
+                var mngTrans = new TranslationManagement();
                 var user = new User();
                 var languague = new Languague();
 
@@ -180,8 +181,13 @@ namespace BotConsole
                         for (var i = 0; i < infoArray.Length; i++)
                         {
                             var item = infoArray[i];
-                            
 
+                            word = mngTrans.re
+
+                            if (true)
+                            {
+
+                            }
 
                         }
 
