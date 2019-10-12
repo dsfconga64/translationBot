@@ -21,6 +21,12 @@ namespace Entities_POJO
             //amountTranslatedWords = 0;
         }
 
+        public User(int pIdUser)
+        {
+            IdUser = pIdUser;
+            //amountTranslatedWords = 0;
+        }
+
 
     }
 }

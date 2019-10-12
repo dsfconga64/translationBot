@@ -30,7 +30,7 @@ namespace BotConsole
                 Console.WriteLine("TranslationBot");
                 Console.WriteLine("1.Añadir usuario");
                 Console.WriteLine("2.Añadir idioma");
-                Console.WriteLine("3.Traductor de idiomas");
+                Console.WriteLine("3.Traductor");
                 Console.WriteLine("4.UPDATE");
                 Console.WriteLine("5.DELETE");
 
@@ -58,6 +58,9 @@ namespace BotConsole
                         Console.WriteLine("***************************");
                         Console.WriteLine("***** Añadir idioma   *****");
                         Console.WriteLine("***************************");
+
+
+
                         Console.WriteLine("Escribe el idioma que desea añadir");
                         var infoLang = Console.ReadLine();
 
@@ -78,6 +81,112 @@ namespace BotConsole
 
                         break;
                     case "3":
+
+                        Console.WriteLine("***************************");
+                        Console.WriteLine("***** Traducir*****");
+                        Console.WriteLine("***************************");
+                        Console.WriteLine("Ingrese su Id de usuario");
+                        var infoId = Console.ReadLine();
+                        int infoIdUser = Int32.Parse(infoId);
+                        user = new User(infoIdUser);
+
+                        user = mng.RetrieveById(user);
+
+                        if (user == null)
+                        {
+                            Console.WriteLine("El usuario no existe desea agregarlo?");
+                            
+
+                            Console.WriteLine("Agregar? Y/N");
+                            var addUser = Console.ReadLine();
+
+                            if (addUser.Equals("Y", StringComparison.CurrentCultureIgnoreCase))
+                            {
+                                Console.WriteLine("Escriba el nombre del usuario");
+                                var userName = Console.ReadLine();
+
+                                var user1 = new User
+                                {
+                                    Name = userName
+                                };
+                                mng.Create(user1);
+
+                                Console.WriteLine("Usuario añadido");
+
+                                user = searchUser();
+                            }
+                            else
+                            {
+                                DoIt();
+                            }
+                        }
+
+                        Console.WriteLine("***************************");
+                        Console.WriteLine("***** Hola "+user.Name+"*****");
+                        Console.WriteLine("***************************");
+
+                        Console.WriteLine("Estos son los idiomas disponibles");
+
+                        var lstLanguagues = mngLng.RetrieveAll();
+
+                        var count = 0;
+
+                        foreach (var l in lstLanguagues)
+                        {
+                            count++;
+
+                            Console.WriteLine(count + "==>" + l.GetEntityInformation());
+                        }
+
+                        Console.WriteLine("Ingrese el idioma que desea traducir");
+
+                        var lng = Console.ReadLine();
+                        languague = new Languague(lng);
+                        languague = mngLng.RetrieveById(languague);
+
+                        if (languague== null)
+                        {
+                            Console.WriteLine("Idioma no existe desea agregarlo?");
+
+                            Console.WriteLine("Agregar? Y/N");
+                            var addLanguague = Console.ReadLine();
+
+                            if (addLanguague.Equals("Y", StringComparison.CurrentCultureIgnoreCase))
+                            {
+                                var languague1 = new Languague
+                                {
+                                    languague = lng
+                                };
+                                mngLng.Create(languague1);
+                                Console.WriteLine("Idioma añadido");
+                            }
+                            else
+                            {
+                                DoIt();
+                            }
+
+
+                        }
+
+
+                        Console.WriteLine("***************************");
+                        Console.WriteLine("***************************");
+                        Console.WriteLine("***************************");
+
+                        Console.WriteLine("Escriba la palabra o palabras que desea traducir separadas por un menos: " + "-");
+                        var word = Console.ReadLine();
+                        var infoArray = word.Split('-');
+
+                        for (var i = 0; i < infoArray.Length; i++)
+                        {
+                            var item = infoArray[i];
+                            
+
+
+                        }
+
+
+
                         //Console.WriteLine("Type the customer id:");
                         //customer.Id = Console.ReadLine();
                         //customer = mng.RetrieveById(customer);
@@ -163,5 +272,34 @@ namespace BotConsole
 
 
         }
+
+        public static User searchUser()
+        {
+            var userMng = new UserManagement();
+
+            var lstUsers = userMng.RetrieveAll();
+
+            var count = 0;
+
+            foreach (var l in lstUsers)
+            {
+                count++;
+
+                Console.WriteLine(count + "==>" + l.GetEntityInformation());
+            }
+
+           
+            Console.WriteLine("Ingrese el id de usuario");
+            var infoId = Console.ReadLine();
+
+            int inforUserId = Int32.Parse(infoId);
+
+            var user = new User(inforUserId);
+
+            user = userMng.RetrieveById(user);
+
+            return user;
+        }
+
     }
 }
