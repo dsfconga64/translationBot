@@ -182,9 +182,22 @@ namespace BotConsole
                         {
                             var item = infoArray[i];
 
-                            word = mngTrans.re
+                            languague = new Languague
+                            {
+                                languague = lng
+                            };
 
-                            if (true)
+                            var languagueTranslate = mngLng.RetrieveById(languague);
+
+                            var translations = new Translations
+                            {
+                                word = item,
+                                FkLanguagueId = languagueTranslate.IdLanguague
+                            };
+
+                            var translatedWord = mngTrans.RetrieveById(translations);
+
+                            if (translatedWord == null)
                             {
 
                             }
