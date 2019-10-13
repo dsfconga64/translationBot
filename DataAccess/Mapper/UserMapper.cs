@@ -48,6 +48,7 @@ namespace DataAccess.Mapper
             var operation = new SqlOperation { ProcedureName = "UPD_USER_PR" };
 
             var c = (User)entity;
+            operation.AddIntParam(DB_COL_ID_USER, c.IdUser);
             operation.AddVarcharParam(DB_COL_NAME, c.Name);
             operation.AddIntParam(DB_COL_TRANSLATED_WORDS_AMOUNT, c.amountTranslatedWords);
 

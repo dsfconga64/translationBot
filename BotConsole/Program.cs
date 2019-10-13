@@ -209,7 +209,7 @@ namespace BotConsole
                                 if (addTranslation.Equals("Y", StringComparison.CurrentCultureIgnoreCase))
                                 {
                                     Console.WriteLine("Ingrese la traduccion de la palabra: " + item + "en el idioma" + languague.languague);
-                                    var tranWord = Console.ReadLine();
+                                    string tranWord = Console.ReadLine();
                                     var translation = new Translations
                                     {
                                         translationAmount = 1,
@@ -254,7 +254,19 @@ namespace BotConsole
                                     FkLanguagueId = translatedWord.FkLanguagueId
                                     
                                 };
+                                var translationHistory = new TranslationsHistory
+                                {
+                                    word = item,
+                                    translatedDate = System.DateTime.Now,
+                                    translatedWord = translatedWord.translatedWord,
+                                    FkUserId = user.IdUser,
+                                    FkLanguagueId = translatedWord.FkLanguagueId
+                                };
 
+                                var user2 = new User { IdUser = user.IdUser, Name = user.Name, amountTranslatedWords = user.amountTranslatedWords + 1 };
+
+                                mng.Update(user2);
+                                mgnTransHistory.Create(translationHistory);
                                 mngTrans.Update(translatedWord1);
 
                                 var sentence = translatedWord.translatedWord;

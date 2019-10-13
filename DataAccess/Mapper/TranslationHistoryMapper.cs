@@ -15,7 +15,7 @@ namespace DataAccess.Mapper
         private const string DB_COL_TRANSLATED_DATE = "TRANSLATED_DATE";
         private const string DB_COL_TRANSLATED_WORD = "TRANSLATED_WORD";
         private const string DB_COL_FK_USER_ID = "FK_USER_ID";
-        private const string DB_COL_FK_LANGUAUGE_ID = "FK_LANGUAUGE_ID";
+        private const string DB_COL_FK_LANGUAUGE_ID = "FK_LANGUAGUE_ID";
 
 
         public SqlOperation GetCreateStatement(BaseEntity entity)
