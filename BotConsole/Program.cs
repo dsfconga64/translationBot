@@ -25,6 +25,7 @@ namespace BotConsole
                 var mng = new UserManagement();
                 var mngLng = new LanguagueManagement();
                 var mngTrans = new TranslationManagement();
+                var mgnTransHistory = new TranslationHistoryManagement();
                 var user = new User();
                 var languague = new Languague();
 
@@ -216,8 +217,25 @@ namespace BotConsole
                                         translatedDate = System.DateTime.Now,
                                         translatedWord = tranWord,
                                         FkLanguagueId = languagueTranslate.IdLanguague
-                                };
+                                    };
                                     mngTrans.Create(translation);
+
+                                    var translationHistory = new TranslationsHistory
+                                    {
+                                        word = item,
+                                        translatedDate = System.DateTime.Now,
+                                        translatedWord = tranWord,
+                                        FkUserId = user.IdUser,
+                                        FkLanguagueId = languagueTranslate.IdLanguague
+                                    };
+
+                                    var user2 = new User { IdUser = user.IdUser, Name = user.Name, amountTranslatedWords = user.amountTranslatedWords + 1 };
+
+                                    mgnTransHistory.Create(translationHistory);
+
+                                    mng.Update(user2);
+
+
 
                                     Console.WriteLine("Palabra añadida");
                                 }
@@ -228,8 +246,19 @@ namespace BotConsole
                             }
                             else
                             {
+                                var translatedWord1 = new Translations
+                                {
+                                    word = translatedWord.word,
+                                    translatedWord = translatedWord.translatedWord,
+                                    translationAmount = translatedWord.translationAmount + 1,
+                                    FkLanguagueId = translatedWord.FkLanguagueId
+                                    
+                                };
+
+                                mngTrans.Update(translatedWord1);
+
                                 var sentence = translatedWord.translatedWord;
-                                Console.WriteLine(translatedWord.translatedWord);
+                                Console.WriteLine(sentence);
                             }
 
                         }

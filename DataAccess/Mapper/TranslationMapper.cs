@@ -55,9 +55,10 @@ namespace DataAccess.Mapper
             var operation = new SqlOperation { ProcedureName = "UPD_TRANSLATION_PR" };
 
             var c = (Translations)entity;
-            operation.AddVarcharParam(DB_COL_WORD, c.word);
             operation.AddIntParam(DB_COL_FK_LANGUAGUE_ID, c.FkLanguagueId);
+            operation.AddVarcharParam(DB_COL_WORD, c.word);
             operation.AddVarcharParam(DB_COL_TRANSLATED_WORD, c.translatedWord);
+            operation.AddIntParam(DB_COL_TRANSLATION_AMOUNT, c.translationAmount);
 
             return operation;
         }
