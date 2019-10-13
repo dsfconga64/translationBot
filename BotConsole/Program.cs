@@ -199,7 +199,37 @@ namespace BotConsole
 
                             if (translatedWord == null)
                             {
+                                Console.WriteLine("La palabra: " + item + " no existe en el idioma: "+ languague.languague +" desea añadirla?");
 
+
+                                Console.WriteLine("Agregar? Y/N");
+                                var addTranslation = Console.ReadLine();
+
+                                if (addTranslation.Equals("Y", StringComparison.CurrentCultureIgnoreCase))
+                                {
+                                    Console.WriteLine("Ingrese la traduccion de la palabra: " + item + "en el idioma" + languague.languague);
+                                    var tranWord = Console.ReadLine();
+                                    var translation = new Translations
+                                    {
+                                        translationAmount = 1,
+                                        word = item,
+                                        translatedDate = System.DateTime.Now,
+                                        translatedWord = tranWord,
+                                        FkLanguagueId = languagueTranslate.IdLanguague
+                                };
+                                    mngTrans.Create(translation);
+
+                                    Console.WriteLine("Palabra añadida");
+                                }
+                                else
+                                {
+                                    DoIt();
+                                }
+                            }
+                            else
+                            {
+                                var sentence = translatedWord.translatedWord;
+                                Console.WriteLine(translatedWord.translatedWord);
                             }
 
                         }
