@@ -61,6 +61,12 @@ namespace DataAccess.Mapper
             return operation;
         }
 
+        public SqlOperation GetRetrieveMostPopularLanguague()
+        {
+            var operation = new SqlOperation { ProcedureName = "RET_MOST_POPULAR_LANGUAGUE" };
+            return operation;
+        }
+
         public List<BaseEntity> BuildObjects(List<Dictionary<string, object>> lstRows)
         {
             var lstResults = new List<BaseEntity>();
@@ -76,13 +82,23 @@ namespace DataAccess.Mapper
 
         public BaseEntity BuildObject(Dictionary<string, object> row)
         {
-            var customer = new Languague
+            var languague = new Languague
             {
                 IdLanguague = GetIntValue(row, DB_COL_ID_LANGUAGUE),
                 languague = GetStringValue(row, DB_COL_LANGUAGUE)
             };
 
-            return customer;
+            return languague;
+        }
+
+        public BaseEntity BuildMostUsedLanguague(Dictionary<string, object> row)
+        {
+            var languague = new Languague
+            {
+                languague = GetStringValue(row, DB_COL_LANGUAGUE)
+            };
+
+            return languague;
         }
     }
 }

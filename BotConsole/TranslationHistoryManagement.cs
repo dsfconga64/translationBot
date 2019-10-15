@@ -42,5 +42,10 @@ namespace BotConsole
         {
             crudTranslationHistory.Delete(translationsHistory);
         }
+
+        public List<TranslationsHistory> RetrieveTopHundredWords()
+        {
+            return crudTranslationHistory.RetrieveHundredMostUsedWords<TranslationsHistory>();
+        }
     }
 }

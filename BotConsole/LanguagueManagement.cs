@@ -44,5 +44,10 @@ namespace BotConsole
         {
             crudLanguague.Delete(languague);
         }
+
+        public Languague RetrieveMostPopularLanguague()
+        {
+            return crudLanguague.TRetrieveMostUsedLanguague<Languague>();
+        }
     }
 }

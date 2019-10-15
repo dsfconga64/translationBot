@@ -33,8 +33,9 @@ namespace BotConsole
                 Console.WriteLine("1.Añadir usuario");
                 Console.WriteLine("2.Añadir idioma");
                 Console.WriteLine("3.Traductor");
-                Console.WriteLine("4.UPDATE");
-                Console.WriteLine("5.DELETE");
+                Console.WriteLine("4.Idiomas disponibles");
+                Console.WriteLine("5.Obtener idioma mas popular");
+                Console.WriteLine("6.Obtener 1000 palabras mas populares");
 
                 Console.WriteLine("Choose an option: ");
                 var option = Console.ReadLine();
@@ -97,7 +98,7 @@ namespace BotConsole
                         if (user == null)
                         {
                             Console.WriteLine("El usuario no existe desea agregarlo?");
-                            
+
 
                             Console.WriteLine("Agregar? Y/N");
                             var addUser = Console.ReadLine();
@@ -124,7 +125,7 @@ namespace BotConsole
                         }
 
                         Console.WriteLine("***************************");
-                        Console.WriteLine("***** Hola "+user.Name+"*****");
+                        Console.WriteLine("***** Hola " + user.Name + "*****");
                         Console.WriteLine("***************************");
 
                         Console.WriteLine("Estos son los idiomas disponibles");
@@ -146,7 +147,7 @@ namespace BotConsole
                         languague = new Languague(lng);
                         languague = mngLng.RetrieveById(languague);
 
-                        if (languague== null)
+                        if (languague == null)
                         {
                             Console.WriteLine("Idioma no existe desea agregarlo?");
 
@@ -200,7 +201,7 @@ namespace BotConsole
 
                             if (translatedWord == null)
                             {
-                                Console.WriteLine("La palabra: " + item + " no existe en el idioma: "+ languague.languague +" desea añadirla?");
+                                Console.WriteLine("La palabra: " + item + " no existe en el idioma: " + languague.languague + " desea añadirla?");
 
 
                                 Console.WriteLine("Agregar? Y/N");
@@ -208,7 +209,7 @@ namespace BotConsole
 
                                 if (addTranslation.Equals("Y", StringComparison.CurrentCultureIgnoreCase))
                                 {
-                                    Console.WriteLine("Ingrese la traduccion de la palabra: " + item + "en el idioma" + languague.languague);
+                                    Console.WriteLine("Ingrese la traduccion de la palabra: " + item + " en el idioma " + languague.languague);
                                     string tranWord = Console.ReadLine();
                                     var translation = new Translations
                                     {
@@ -238,6 +239,7 @@ namespace BotConsole
 
 
                                     Console.WriteLine("Palabra añadida");
+
                                 }
                                 else
                                 {
@@ -252,7 +254,7 @@ namespace BotConsole
                                     translatedWord = translatedWord.translatedWord,
                                     translationAmount = translatedWord.translationAmount + 1,
                                     FkLanguagueId = translatedWord.FkLanguagueId
-                                    
+
                                 };
                                 var translationHistory = new TranslationsHistory
                                 {
@@ -289,59 +291,64 @@ namespace BotConsole
                         break;
                     case "4":
                         Console.WriteLine("***************************");
-                        //Console.WriteLine("******  UPDATE  **    *****");
-                        //Console.WriteLine("***************************");
+                        Console.WriteLine("***************************");
+                        Console.WriteLine("*****Mostrar Idiomas*******");
+                        Console.WriteLine("***************************");
+                        Console.WriteLine("***************************");
 
-                        //Console.WriteLine("Type the customer id:");
-                        //customer.Id = Console.ReadLine();
-                        //customer = mng.RetrieveById(customer);
+                        var lang = mngLng.RetrieveAll();
+                        var count1 = 0;
 
-                        //if (customer != null)
-                        //{
-                        //    Console.WriteLine(" ==> " + customer.GetEntityInformation());
-                        //    Console.WriteLine("Type a new name, actual value is " + customer.Name);
-                        //    customer.Name = Console.ReadLine();
-                        //    Console.WriteLine("Type a new last name, actual value is " + customer.LastName);
-                        //    customer.LastName = Console.ReadLine();
-                        //    Console.WriteLine("Type a new age, actual value is " + customer.Age);
-                        //    var textAge = Console.ReadLine();
-                        //    customer.Age = Int32.TryParse(textAge, out int age) ? age : customer.Age;
+                        foreach (var c in lang)
+                        {
+                            count1++;
 
-                        //    mng.Update(customer);
-                        //    Console.WriteLine("Customer was updated");
-                        //}
-                        //else
-                        //{
-                        //    throw new Exception("Customer not registered");
-                        //}
+                            Console.WriteLine(count1 + "===>" + c.GetEntityInformation());
+                        }
+
 
                         break;
 
                     case "5":
-                        //Console.WriteLine("Type the customer id:");
-                        //customer.Id = Console.ReadLine();
-                        //customer = mng.RetrieveById(customer);
 
-                        //if (customer != null)
-                        //{
-                        //    Console.WriteLine(" ==> " + customer.GetEntityInformation());
+                        Console.WriteLine("***************************");
+                        Console.WriteLine("***************************");
+                        Console.WriteLine("*****Idioma mas popular*******");
+                        Console.WriteLine("***************************");
+                        Console.WriteLine("***************************");
 
-                        //    Console.WriteLine("Delete? Y/N");
-                        //    var delete = Console.ReadLine();
+                        var languague2 = mngLng.RetrieveMostPopularLanguague();
 
-                        //    if (delete.Equals("Y", StringComparison.CurrentCultureIgnoreCase))
-                        //    {
-                        //        mng.Delete(customer);
-                        //        Console.WriteLine("Customer was deleted");
-                        //    }
-                        //}
-                        //else
-                        //{
-                        //    throw new Exception("Customer not registered");
-                        //}
+                        if (languague != null)
+                        {
+                            Console.WriteLine("El idioma mas utilizado es: " + languague2.languague);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Algo salio mal");
+                        }
 
                         break;
 
+                    case "6":
+
+                        Console.WriteLine("***************************");
+                        Console.WriteLine("***************************");
+                        Console.WriteLine("*****Idioma mas popular*******");
+                        Console.WriteLine("***************************");
+                        Console.WriteLine("***************************");
+
+                        var lstMostUSedWords = mgnTransHistory.RetrieveTopHundredWords();
+
+                        var count3 = 0;
+
+                        foreach (var c in lstMostUSedWords)
+                        {
+                            count3++;
+                            Console.WriteLine(count3 + " ==> " + c.word);
+                        }
+
+                        break;
                 }
             }
             catch (Exception ex)

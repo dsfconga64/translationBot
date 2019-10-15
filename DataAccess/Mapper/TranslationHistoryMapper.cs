@@ -69,6 +69,12 @@ namespace DataAccess.Mapper
             return operation;
         }
 
+        public SqlOperation GetRetriveMostUsedWords()
+        {
+            var operation = new SqlOperation { ProcedureName = "RET_MOST_USED_WORDS" };
+            return operation;
+        }
+
         public List<BaseEntity> BuildObjects(List<Dictionary<string, object>> lstRows)
         {
             var lstResults = new List<BaseEntity>();
@@ -76,6 +82,19 @@ namespace DataAccess.Mapper
             foreach (var row in lstRows)
             {
                 var customer = BuildObject(row);
+                lstResults.Add(customer);
+            }
+
+            return lstResults;
+        }
+
+        public List<BaseEntity> BuildObjectsWords(List<Dictionary<string, object>> lstRows)
+        {
+            var lstResults = new List<BaseEntity>();
+
+            foreach (var row in lstRows)
+            {
+                var customer = BuilHundredMostusedWord(row);
                 lstResults.Add(customer);
             }
 
@@ -96,5 +115,16 @@ namespace DataAccess.Mapper
 
             return translationsHistory;
         }
+
+        public BaseEntity BuilHundredMostusedWord(Dictionary<string, object> row)
+        {
+            var translationsHistory = new TranslationsHistory
+            {
+                word = GetStringValue(row, DB_COL_WORD),
+            };
+
+            return translationsHistory;
+        }
+
     }
 }

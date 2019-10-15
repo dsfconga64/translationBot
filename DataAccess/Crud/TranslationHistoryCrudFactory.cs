@@ -71,5 +71,23 @@ namespace DataAccess.Crud
             var account = (TranslationsHistory)entity;
             dao.ExecuteProcedure(mapper.GetDeleteStatement(account));
         }
+
+        public  List<T> RetrieveHundredMostUsedWords<T>()
+        {
+            var lstAccounts = new List<T>();
+
+            var lstResult = dao.ExecuteQueryProcedure(mapper.GetRetriveMostUsedWords());
+            var dic = new Dictionary<string, object>();
+            if (lstResult.Count > 0)
+            {
+                var objs = mapper.BuildObjectsWords(lstResult);
+                foreach (var c in objs)
+                {
+                    lstAccounts.Add((T)Convert.ChangeType(c, typeof(T)));
+                }
+            }
+
+            return lstAccounts;
+        }
     }
 }

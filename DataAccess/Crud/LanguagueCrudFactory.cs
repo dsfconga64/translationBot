@@ -70,5 +70,19 @@ namespace DataAccess.Crud
             var account = (Languague)entity;
             dao.ExecuteProcedure(mapper.GetDeleteStatement(account));
         }
+
+        public T TRetrieveMostUsedLanguague<T>()
+        {
+            var lstResult = dao.ExecuteQueryProcedure(mapper.GetRetrieveMostPopularLanguague());
+            var dic = new Dictionary<string, object>();
+            if (lstResult.Count > 0)
+            {
+                dic = lstResult[0];
+                var objs = mapper.BuildMostUsedLanguague(dic);
+                return (T)Convert.ChangeType(objs, typeof(T));
+            }
+
+            return default(T);
+        }
     }
 }
