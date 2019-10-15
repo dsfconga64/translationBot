@@ -176,7 +176,7 @@ namespace BotConsole
                         Console.WriteLine("***************************");
                         Console.WriteLine("***************************");
 
-                        Console.WriteLine("Escriba la palabra o palabras que desea traducir separadas por un menos: " + "-");
+                        Console.WriteLine("Escriba la palabra o palabras que desea traducir separadas por un menos: " + " Ejemplo: palabra-palabra-palabra");
                         var word = Console.ReadLine();
                         var infoArray = word.Split('-');
 
@@ -334,7 +334,7 @@ namespace BotConsole
 
                         Console.WriteLine("***************************");
                         Console.WriteLine("***************************");
-                        Console.WriteLine("*****Idioma mas popular*******");
+                        Console.WriteLine("*****Palabras mas populares*******");
                         Console.WriteLine("***************************");
                         Console.WriteLine("***************************");
 
@@ -347,6 +347,17 @@ namespace BotConsole
                             count3++;
                             Console.WriteLine(count3 + " ==> " + c.word);
                         }
+
+                        break;
+                    case "7":
+
+                        Console.WriteLine("***************************");
+                        Console.WriteLine("***************************");
+                        Console.WriteLine("*****Idioma mas popular*******");
+                        Console.WriteLine("***************************");
+                        Console.WriteLine("***************************");
+
+                   
 
                         break;
                 }
